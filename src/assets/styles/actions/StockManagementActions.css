@@ -1,0 +1,132 @@
+/* Container Design */
+.modal-content {
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.modal-header {
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-title {
+  color: #2d3436;
+  letter-spacing: -0.5px;
+  font-size: 1.25rem;
+}
+
+/* Form Controls Customization */
+.form-label {
+  color: #636e72;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  border: 1.5px solid #edf2f7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+  outline: none;
+}
+
+/* Placeholder color */
+.form-control::placeholder {
+  color: #b2bec3;
+  font-weight: 400;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #4361ee;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition:
+    transform 0.1s active,
+    background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #3751d3;
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Close Button focus fix */
+.btn-close:focus {
+  box-shadow: none;
+}
+
+/* Spacing adjustments */
+.modal-body {
+  padding: 1.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1.25rem !important;
+}
+
+/* Container styling para sa Delete Modal */
+.delete-container {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+/* Warning Icon sa taas */
+.delete-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background-color: #fff5f5;
+  color: #dc3545;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  border: 2px solid #fecaca;
+}
+
+/* Mensahe Text */
+.delete-text {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* Modern Danger Button */
+.btn-delete-confirm {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 100%; /* Stretch para modern tan-awon */
+}
+
+.btn-delete-confirm:hover {
+  background-color: #bb2d3b;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-delete-confirm:active {
+  transform: translateY(0);
+}

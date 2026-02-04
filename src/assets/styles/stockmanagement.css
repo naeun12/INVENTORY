@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+.btn-custom-admin1 {
+  background-color: #f4c430;
+  color: black;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.btn-custom-admin1:hover {
+  background-color: #d6c592;
+  color: white;
+}
+.btn-custom-admin2 {
+  background-color: #d32f2f;
+  color: white;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.btn-custom-admin2:hover {
+  background-color: #d66060;
+  color: white;
+}

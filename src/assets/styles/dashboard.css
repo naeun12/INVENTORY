@@ -1,0 +1,40 @@
+.report-date-layout {
+  border: #6366f1;
+}
+
+.header-content {
+  background-color: #f0f2f5;
+}
+
+/* Table Design Adjustments */
+.table thead th {
+  background-color: #f8f9fa;
+  font-weight: 700;
+  border-top: none;
+  font-size: 0.75rem;
+  padding: 15px 10px;
+}
+
+.bg-primary-subtle {
+  background-color: #e7f1ff;
+}
+
+.bg-light-hover:hover {
+  background-color: #e9ecef;
+  cursor: default;
+}
+
+/* Force Table Width */
+.table-responsive {
+  width: 100%;
+}
+.btn-report {
+  background-color: #f4c430;
+  color: white;
+}
+.btn-report:hover {
+  background-color: #e3b922;
+  color: white;
+}
+
+/* Sidebar deep styling */

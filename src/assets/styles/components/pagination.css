@@ -1,0 +1,43 @@
+/* Container for the page numbers */
+.pagination-custom .page-item {
+  margin: 0 2px;
+}
+
+/* Base style for every link */
+.pagination-custom .page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: #6c757d;
+  background-color: #fff;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover State */
+.pagination-custom .page-link:hover {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+  transform: translateY(-2px); /* Subtle lift */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Active Page State */
+.pagination-custom .page-item.active .page-link {
+  background-color: #0d6efd;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25) !important;
+}
+
+/* Disabled State */
+.pagination-custom .page-item.disabled .page-link {
+  background-color: #f8f9fa;
+  color: #dee2e6;
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
