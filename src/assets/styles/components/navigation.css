@@ -1,12 +1,9 @@
-/* Hover effect for the bell */
 .btn-light:hover i {
   color: #0d6efd !important;
-  /* Change to primary color on hover */
   transform: rotate(15deg);
   transition: transform 0.2s ease;
 }
 
-/* Dropdown animation */
 .dropdown-menu {
   animation: slideIn 0.2s ease-out;
   visibility: hidden;
@@ -33,13 +30,10 @@
   }
 }
 
-/* Custom scrollbar for notifications */
-
 div::-webkit-scrollbar-thumb {
   background: #e0e0e0;
   border-radius: 10px;
 }
-/* Dropdown item styling */
 .dropdown-item {
   transition: all 0.2s ease;
   font-size: 0.9rem;
@@ -47,17 +41,15 @@ div::-webkit-scrollbar-thumb {
 
 .dropdown-item:hover {
   background-color: #f8f9fa;
-  transform: translateX(3px); /* Subtle slide effect on hover */
+  transform: translateX(3px);
 }
 
-/* Hover effect for the whole trigger */
 .dropdown:hover .avatar {
   filter: brightness(1.1);
   transform: scale(1.05);
   transition: transform 0.2s ease;
 }
 
-/* The chevron rotation when dropdown is open */
 .dropdown-toggle.show i {
   transform: rotate(180deg);
 }

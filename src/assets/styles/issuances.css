@@ -1,0 +1,93 @@
+.report-date-layout {
+  border: #6366f1;
+}
+
+.header-content {
+  background-color: #f0f2f5;
+}
+.text-blue {
+  color: #1f3c88;
+}
+.bg-blue-light {
+  background-color: #ffffff;
+}
+.btn-blue {
+  background-color: #1f3c88;
+  border: none;
+  transition: 0.3s;
+}
+.btn-blue:hover {
+  background-color: #1a3270;
+  transform: translateY(-1px);
+}
+
+.custom-input {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+}
+
+.rounded-4 {
+  border-radius: 1.25rem !important;
+}
+/* Container Spacing */
+.rounded-4 {
+  border-radius: 1.25rem !important;
+}
+.bg-light-subtle {
+  background-color: #fcfcfd !important;
+}
+.border-dashed {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-color: #e9ecef !important;
+}
+
+/* Custom Inputs */
+.custom-input,
+.custom-input-status {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-input:focus {
+  background-color: #ffffff;
+  border-color: #1a3270;
+  box-shadow: 0 4px 12px rgba(26, 50, 112, 0.1);
+}
+
+/* Status Select Styling */
+.custom-input-status {
+  background-color: #fff;
+  border-left: 4px solid #1a3270; /* Yellow for Pending */
+}
+
+/* Typography & Icons */
+.text-blue {
+  color: #1a3270 !important;
+}
+.border-blue-subtle {
+  border-color: #1a3270 !important;
+}
+
+.btn-blue:hover {
+  background-color: #1a3270;
+  transform: translateY(-1px);
+}
+
+/* Remove the default focus ring from the search bar */
+.form-control:focus {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+/* Subtle vertical divider for desktop */
+@media (min-width: 992px) {
+  .border-start-md {
+    border-left: 1px solid #e9ecef !important;
+  }
+}

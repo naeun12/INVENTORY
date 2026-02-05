@@ -6,16 +6,33 @@
             <ComponentAuthNavigation pageTitle="Dashboard" />
 
             <main class="p-4">
-                <div
-                    class="card report-date-layout d-flex flex-column border-start border-info flex-md-row align-items-md-center justify-content-between mb-4 p-3 shadow-sm rounded border-4  ">
-                    <div class=" d-flex align-items-center mb-2 mb-md-0">
-                        <label class="text-muted small me-2 text-uppercase fw-bold">Date</label>
-                        <input type="date" class="form-control form-control-sm d-inline-block w-auto"
-                            :value="new Date().toISOString().substr(0, 10)" />
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm p-3 rounded-4">
+                            <div
+                                class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <div class="bg-blue-light p-2 rounded-3 me-3 d-none d-md-block">
+                                        <i class="bi bi-calendar-check text-blue"></i>
+                                    </div>
+                                    <div>
+                                        <label class="text-muted small fw-bold text-uppercase d-block mb-1"
+                                            style="font-size: 0.7rem; letter-spacing: 1px;">Report Date</label>
+                                        <input type="date" class="form-control custom-input border-0" value="2023-10-27"
+                                            style="width: 200px;">
+                                    </div>
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="btn btn-blue px-4 py-2 fw-bold text-white rounded-pill shadow-sm">
+                                        <i class="bi bi-file-earmark-bar-graph me-2"></i>Generate Report
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-report px-4 shadow-sm">
-                        Generate Report
-                    </button>
                 </div>
 
                 <div class="row g-4">

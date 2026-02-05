@@ -96,7 +96,8 @@
                     </li>
 
                     <li>
-                        <router-link class="dropdown-item rounded-2 py-2 d-flex align-items-center gap-2" to="/account">
+                        <router-link class="dropdown-item rounded-2 py-2 d-flex align-items-center gap-2"
+                            to="/my-profile">
                             <i class="bi bi-person text-primary"></i>
                             <span>My Profile</span>
                         </router-link>
@@ -104,7 +105,7 @@
 
                     <li>
                         <router-link class="dropdown-item rounded-2 py-2 d-flex align-items-center gap-2"
-                            to="/settings">
+                            to="/account-settings">
                             <i class="bi bi-gear text-secondary"></i>
                             <span>Account Settings</span>
                         </router-link>
@@ -147,7 +148,9 @@ export default {
                 'Barangay Units': 'bi-houses',
                 'Schools': 'bi-mortarboard',
                 'Notifications': 'bi-bell',
-                'User Management': 'bi-person-gear'
+                'User Management': 'bi-person-gear',
+                'Account Settings': 'bi-gear',
+                'My Profile': 'bi-person'
             };
 
             // Returns the mapped icon, or a default circle if the title doesn't match

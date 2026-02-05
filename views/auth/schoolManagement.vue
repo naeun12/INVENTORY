@@ -5,53 +5,103 @@
         <div class="header-content w-100 d-flex flex-column bg-light" style="height: 100vh; overflow-y: auto;">
             <ComponentAuthNavigation pageTitle="Schools" />
             <main>
-                <div class="card shadow-sm mx-4 my-3 p-4 border-0 border-start border-primary">
-                    <div class="row g-2 align-items-center">
+                <div class="card border-0 shadow-sm mx-4 my-3 p-3 rounded-4">
+                    <div class="row g-3 align-items-center">
 
-                        <!-- Search -->
-                        <div class="col-15 col-md-3">
-                            <input type="text" class="form-control w-100" placeholder="Search Schools..." />
-                        </div>
-                        <div class="col-4 col-md-2">
-                            <button class="btn btn-primary w-100">
-                                All Schools (90)
-                            </button>
-                        </div>
-                        <div class="col-6 col-md-2">
-                            <div class="dropdown w-100">
-                                <button class="btn btn-secondary dropdown-toggle w-100" type="button"
-                                    data-bs-toggle="dropdown">
-                                    Filter School
-                                </button>
-                                <ul class="dropdown-menu w-100">
-                                    <li><a class="dropdown-item" href="#">New School</a></li>
-                                    <li><a class="dropdown-item" href="#">Old School</a></li>
-                                    <li><a class="dropdown-item" href="#">Default</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2">
-                            <div class="dropdown w-100">
-                                <button class="btn btn-secondary dropdown-toggle w-100" type="button"
-                                    data-bs-toggle="dropdown">
-                                    Sort School
-                                </button>
-                                <ul class="dropdown-menu w-100">
-                                    <li><a class="dropdown-item" href="#">Name (A-Z)</a></li>
-                                    <li><a class="dropdown-item" href="#">Name (Z-A)</a></li>
-                                    <li><a class="dropdown-item" href="#">Default</a></li>
-                                </ul>
+                        <div class="col-12 col-lg-3">
+                            <div class="input-group bg-light rounded-pill px-3 py-1">
+                                <span class="input-group-text bg-transparent border-0 text-muted">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control bg-transparent border-0 shadow-none ps-0"
+                                    placeholder="Search school name or ID..." style="font-size: 0.95rem;">
                             </div>
                         </div>
 
-                        <!-- Add School -->
-                        <div class="col-12 col-md-2">
-                            <button class="btn btn-primary w-100" @click="OpenSchoolAddModal('add', 'ADD NEW SCHOOL')">
-                                Add New School
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <button class="btn btn-blue w-100 rounded-pill fw-bold text-white shadow-sm">
+                                Total Schools <span class="badge bg-white text-primary rounded-circle ms-1">90</span>
                             </button>
                         </div>
+
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-white w-100 border-0 shadow-sm rounded-pill px-3 fw-semibold text-muted dropdown-toggle"
+                                    type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-funnel me-1 text-blue"></i> Filter
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow mt-2 rounded-3">
+                                    <li>
+                                        <h6 class="dropdown-header small text-uppercase fw-bold text-muted">
+                                            Institutional Records</h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-calendar-check me-2 text-success"></i> Recent Registrations
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-journal-bookmark me-2 text-muted"></i> Historical Archive
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center justify-content-center text-primary fw-bold"
+                                            href="#">
+                                            <i class="bi bi-arrow-counterclockwise me-2"></i> Restore All View
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-white w-100 border-0 shadow-sm rounded-pill px-3 fw-semibold text-muted dropdown-toggle"
+                                    type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-sort-alpha-down me-1 text-blue"></i> Sort By
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow mt-2 rounded-3">
+                                    <li>
+                                        <h6 class="dropdown-header small text-uppercase fw-bold text-muted">Sort By</h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-sort-alpha-down me-2 text-primary"></i> School Name (A-Z)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-sort-alpha-up me-2"></i> School Name (Z-A)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-geo-alt me-2 text-muted"></i> By District / Location
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3 col-lg-3">
+                            <button class="btn btn-blue-outline w-100 rounded-pill fw-bold shadow-sm"
+                                @click="OpenSchoolAddModal('add', 'ADD NEW SCHOOL')">
+
+                                <i class="bi bi-plus-circle-fill me-1"></i> Add New School
+                            </button>
+
+                        </div>
+
                     </div>
-
                 </div>
                 <div
                     class="card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-0 border-start border-primary">
@@ -260,3 +310,4 @@ export default {
 </script>
 <style scoped src="../../src/assets/styles/components/pagination.css"></style>
 <style scoped src="../../src/assets/styles/components/card.css"></style>
+<style scoped src="../../src/assets/styles/components/button.css"></style>

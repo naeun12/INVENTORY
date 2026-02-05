@@ -5,54 +5,91 @@
         <div class="header-content w-100 d-flex flex-column bg-light" style="height: 100vh; overflow-y: auto;">
             <ComponentAuthNavigation pageTitle="Departments" />
             <main>
-                <div class="card shadow-sm mx-4 my-3 p-4 border-0 border-start border-primary">
-                    <div class="row g-2 align-items-center">
+                <div class="card border-0 shadow-sm mx-4 my-3 p-3 rounded-4">
+                    <div class="row g-3 align-items-center">
 
-                        <!-- Search -->
-                        <div class="col-15 col-md-3">
-                            <input type="text" class="form-control w-100" placeholder="Search Department..." />
+                        <div class="col-12 col-lg-3">
+                            <div class="input-group bg-light rounded-pill px-3">
+                                <span class="input-group-text bg-transparent border-0 text-muted">
+                                    <i class="bi bi-search"></i>
+                                </span>
+                                <input type="text" class="form-control bg-transparent border-0 shadow-none ps-0"
+                                    placeholder="Search Department..." style="font-size: 0.9rem;">
+                            </div>
                         </div>
 
-                        <!-- All Department button -->
-                        <div class="col-4 col-md-2">
-                            <button class="btn btn-primary w-100">
-                                All Department (90)
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <button class="btn btn-blue w-100 rounded-pill fw-bold text-white shadow-sm">
+                                All <span class="d-none d-xl-inline">Departments</span> <span
+                                    class="badge bg-white text-primary rounded-circle ms-1">90</span>
                             </button>
                         </div>
 
-                        <!-- Filter dropdown -->
-                        <div class="col-6 col-md-2">
-                            <div class="dropdown w-100">
-                                <button class="btn btn-secondary dropdown-toggle w-100" type="button"
-                                    data-bs-toggle="dropdown">
-                                    Filter Department
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-white w-100 border-0 shadow-sm rounded-pill px-3 fw-semibold text-muted dropdown-toggle"
+                                    type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-funnel me-1 text-blue"></i> Filter
                                 </button>
-                                <ul class="dropdown-menu w-100">
-                                    <li><a class="dropdown-item" href="#">New Department</a></li>
-                                    <li><a class="dropdown-item" href="#">Old Deparment</a></li>
-                                    <li><a class="dropdown-item" href="#">Default</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-4 col-md-2">
-                            <div class="dropdown w-100">
-                                <button class="btn btn-secondary dropdown-toggle w-100" type="button"
-                                    data-bs-toggle="dropdown">
-                                    Sort Department
-                                </button>
-                                <ul class="dropdown-menu w-100">
-                                    <li><a class="dropdown-item" href="#">Name (A-Z)</a></li>
-                                    <li><a class="dropdown-item" href="#">Name (Z-A)</a></li>
-                                    <li><a class="dropdown-item" href="#">Default</a></li>
+                                <ul class="dropdown-menu border-0 shadow mt-2 rounded-3">
+                                    <li>
+                                        <h6 class="dropdown-header small text-uppercase fw-bold text-muted">Filter by
+                                            Age</h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-calendar-plus me-2 text-primary"></i> Recently Established
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-archive me-2 text-muted"></i> Legacy Departments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small text-center fw-bold text-secondary" href="#">
+                                            Reset to Default
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Add Department -->
-                        <div class="col-12 col-md-2">
-                            <button class="btn btn-primary w-100"
+                        <div class="col-6 col-md-3 col-lg-2">
+                            <div class="dropdown">
+                                <button
+                                    class="btn btn-white w-100 border-0 shadow-sm rounded-pill px-3 fw-semibold text-muted dropdown-toggle"
+                                    type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-sort-alpha-down me-1 text-blue"></i> Sort
+                                </button>
+                                <ul class="dropdown-menu border-0 shadow mt-2 rounded-3">
+                                    <li>
+                                        <h6 class="dropdown-header small text-uppercase fw-bold text-muted">Sort Order
+                                        </h6>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-sort-alpha-down me-2 text-primary"></i> Name: Ascending
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item small d-flex align-items-center" href="#">
+                                            <i class="bi bi-sort-alpha-up me-2"></i> Name: Descending
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-3 col-lg-3 text-end">
+                            <button class="btn btn-blue-outline w-100 rounded-pill fw-bold shadow-sm"
                                 @click="OpenDepartmentAddModal('add', 'Add New Department')">
-                                Add New Department
+                                <i class="bi bi-plus-circle-fill me-1"></i> Add New <span
+                                    class="d-none d-xl-inline">Dept.</span>
                             </button>
                         </div>
 
@@ -159,7 +196,7 @@
                 <div v-if="showDepartmentAddModal" class="modal-backdrop fade show"></div>
                 <!--Update-->
                 <div v-if="showDepartmentUpdateModal" class="modal fade show d-block" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
 
                             <!-- Modal Header -->
@@ -257,3 +294,4 @@ export default {
 <style scoped src="../../src/assets/styles/components/pagination.css"></style>
 
 <style scoped src="../../src/assets/styles/components/card.css"></style>
+<style scoped src="../../src/assets/styles/components/button.css"></style>

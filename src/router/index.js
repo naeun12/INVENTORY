@@ -8,6 +8,8 @@ import DepartmentManagement from '../../views/auth/departmentManagement.vue'
 import NationalofficeManagement from '../../views/auth/nationalofficeManagement.vue'
 import BarangayManagement from '../../views/auth/barangayManagement.vue'
 import SchoolManagement from '../../views/auth/schoolManagement.vue'
+import AccountSettings from '../../views/auth/accountSettings.vue'
+import MyProfile from '../../views/auth/myProfile.vue'
 import Notifications from '../../views/auth/notifications.vue'
 
 import CreatenewAccount from '../../views/auth/createnewAccount.vue'
@@ -66,6 +68,16 @@ const routes = [
     path: '/school-management',
     name: 'schoolManagement',
     component: SchoolManagement,
+  },
+  {
+    path: '/account-settings',
+    name: 'AccountSettings',
+    component: AccountSettings,
+  },
+  {
+    path: '/my-profile',
+    name: 'MyProfile',
+    component: MyProfile,
   },
 ]
 

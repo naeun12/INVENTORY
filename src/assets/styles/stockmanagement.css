@@ -23,3 +23,23 @@ body {
   background-color: #d66060;
   color: white;
 }
+.text-blue {
+  color: #1a3270 !important;
+}
+.border-blue-subtle {
+  border-color: #1a3270 !important;
+}
+
+.btn-blue:hover {
+  background-color: #1a3270;
+  transform: translateY(-1px);
+}
+.btn-blue {
+  background-color: #1f3c88;
+  border: none;
+  transition: 0.3s;
+}
+.btn-blue:hover {
+  background-color: #1a3270;
+  transform: translateY(-1px);
+}

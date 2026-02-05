@@ -36,5 +36,31 @@
   background-color: #e3b922;
   color: white;
 }
+/* Matching your profile page theme */
+.text-blue {
+  color: #1f3c88;
+}
+.bg-blue-light {
+  background-color: #ffffff;
+}
+.btn-blue {
+  background-color: #1f3c88;
+  border: none;
+  transition: 0.3s;
+}
+.btn-blue:hover {
+  background-color: #1a3270;
+  transform: translateY(-1px);
+}
+
+.custom-input {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+}
+
+.rounded-4 {
+  border-radius: 1.25rem !important;
+}
 
 /* Sidebar deep styling */
