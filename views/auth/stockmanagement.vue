@@ -23,8 +23,8 @@
                         <div class="d-flex align-items-center gap-2 flex-wrap">
 
                             <div class="btn-group bg-light p-1 rounded-pill">
-                                <button class="btn btn-primary rounded-pill px-3 shadow-sm fw-bold border-0">
-                                    All <span class="badge bg-white text-primary ms-1">90</span>
+                                <button class="btn btn-blue text-white rounded-pill px-3 shadow-sm fw-bold border-0">
+                                    All <span class="badge bg-white text-black ms-1">90</span>
                                 </button>
                                 <button class="btn btn-light rounded-pill px-3 text-muted border-0 small">Admin 1
                                     (3)</button>
@@ -194,7 +194,7 @@
 
     </div>
     <div v-if="showStockAddModal" class="modal fade show d-block" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow">
 
                 <!-- Modal Header -->
@@ -214,7 +214,7 @@
     <div v-if="showStockAddModal" class="modal-backdrop fade show"></div>
     <!--Update-->
     <div v-if="showStockUpdateModal" class="modal fade show d-block" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 shadow">
 
                 <!-- Modal Header -->

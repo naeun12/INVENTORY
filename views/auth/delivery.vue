@@ -23,9 +23,8 @@
 
                             <div class="col-12 col-xl-7">
                                 <div class="d-flex flex-wrap gap-2 justify-content-xl-end">
-                                    <button class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm">
-                                        All Items <span
-                                            class="badge bg-white text-primary rounded-circle ms-1">90</span>
+                                    <button class="btn btn-blue rounded-pill px-4 fw-bold shadow-sm">
+                                        All Items <span class="badge bg-white text-black rounded-circle ms-1">90</span>
                                     </button>
 
                                     <div class="dropdown">
@@ -50,7 +49,7 @@
                                         </ul>
                                     </div>
 
-                                    <button class="btn btn-white border shadow-sm rounded-pill px-3 fw-semibold ">
+                                    <button class="btn btn-blue border shadow-sm rounded-pill px-3 fw-semibold ">
                                         <span class="icon"><i class="bi bi-clipboard-check"></i></span> View Inssuance
                                     </button>
                                 </div>
@@ -99,7 +98,7 @@
                                     </div>
 
                                     <div class="d-grid">
-                                        <button class="btn btn-primary rounded-3 py-2 fw-bold shadow-sm transition-base"
+                                        <button class="btn btn-blue rounded-3 py-2 fw-bold shadow-sm transition-base"
                                             @click="OpenOderModal('Order', 'Delivery Process')">
                                             <i class="bi bi-truck me-2"></i>Order Processing
                                         </button>

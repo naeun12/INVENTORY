@@ -55,7 +55,7 @@
                                         </div>
 
                                         <div class="col-sm-5 col-md-3 d-grid">
-                                            <button class="btn btn-primary px-4 py-2 fw-semibold">
+                                            <button class="btn btn-blue px-4 py-2 fw-semibold">
                                                 View Report
                                             </button>
                                         </div>
@@ -181,23 +181,6 @@ export default {
     },
 }
 </script>
-<style scoped>
-.fw-black {
-    font-weight: 900;
-}
 
-/* Optional: Smooth scroll for the content area */
-.header-content {
-    scroll-behavior: smooth;
-}
-
-/* Customizing badge colors for a softer look */
-.bg-success-subtle {
-    background-color: #e1f7e9 !important;
-}
-
-.bg-warning-subtle {
-    background-color: #fff8e1 !important;
-}
-</style>
 <style scoped src="../../src/assets/styles/components/card.css"></style>
+<style scoped src="../../src/assets/styles/components/button.css"></style>

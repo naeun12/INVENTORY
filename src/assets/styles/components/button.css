@@ -1,7 +1,8 @@
 /* Blue Theme Helper Classes */
 .btn-blue {
-  background-color: #0d6efd;
+  background-color: #1f3c88;
   border: none;
+  color: white;
   transition: 0.3s;
 }
 .btn-blue:hover {

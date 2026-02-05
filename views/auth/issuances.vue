@@ -272,5 +272,4 @@ export default {
 </script>
 <style scoped src="../../src/assets/styles/issuances.css"></style>
 <style scoped src="../../src/assets/styles/components/pagination.css"></style>
-
 <style scoped src="../../src/assets/styles/components/card.css"></style>

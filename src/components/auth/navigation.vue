@@ -79,10 +79,10 @@
                     <span
                         class="avatar rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold shadow-sm border border-2 border-white"
                         style="width:40px; height:40px;">
-                        JD
+                        LM
                     </span>
                     <div class="d-none d-md-block">
-                        <p class="name fw-semibold mb-0 text-dark" style="font-size: 0.9rem;">John Doe</p>
+                        <p class="name fw-semibold mb-0 text-dark" style="font-size: 0.9rem;">Lance Monsanto</p>
                         <p class="text-muted mb-0" style="font-size: 0.75rem;">Administrator</p>
                     </div>
                     <i class="bi bi-chevron-down small text-muted ms-1"></i>
@@ -91,7 +91,7 @@
                 <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 mt-2 p-2 rounded-3"
                     style="min-width: 200px;">
                     <li class="d-md-none p-2 border-bottom mb-2">
-                        <h6 class="mb-0 fw-bold">John Doe</h6>
+                        <h6 class="mb-0 fw-bold">Lance Monsanto</h6>
                         <small class="text-muted">admin@example.com</small>
                     </li>
 

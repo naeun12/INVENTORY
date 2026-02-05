@@ -103,32 +103,6 @@
     </div>
 </template>
 
-<style scoped>
-.extra-small {
-    font-size: 0.7rem;
-}
-
-.form-control:focus,
-.form-select:focus {
-    border-color: #0d6efd;
-    background-color: #fff;
-}
-
-.section-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.section-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Custom styling for the floating inputs to look like a modern dashboard */
-.form-floating>.form-control:focus~label,
-.form-floating>.form-control:not(:placeholder-shown)~label {
-    transform: scale(0.85) translateY(-0.5rem) translateX(0rem);
-    color: #0d6efd !important;
-}
-</style>
 <script>
 import axios from 'axios';
 export default {
@@ -154,3 +128,4 @@ export default {
 </script>
 <style scoped src="../../../src/assets/styles/components/button.css"></style>
 <style scoped src="../../../src/assets/styles/components/pagination.css"></style>
+<style scoped src="../../../src/assets/styles/actions/deliveryAction.css"></style>

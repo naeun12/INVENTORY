@@ -16,16 +16,6 @@ input::-webkit-inner-spin-button {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
 }
 
-.btn-white {
-  background-color: #ffffff;
-  color: #6c757d;
-}
-
-.btn-white:hover {
-  background-color: #f8f9fa;
-  color: #0d6efd;
-}
-
 .transition-base {
   transition: all 0.2s ease-in-out;
 }
