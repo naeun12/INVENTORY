@@ -5,23 +5,16 @@
         <div class="header-content w-100 d-flex flex-column bg-light" style="height: 100vh; overflow-y: auto;">
             <ComponentAuthNavigation pageTitle="Departments" />
             <main>
+
                 <div class="card border-0 shadow-sm mx-4 my-3 p-3 rounded-4">
                     <div class="row g-3 align-items-center">
 
-                        <div class="col-12 col-lg-3">
-                            <div class="input-group bg-light rounded-pill px-3">
-                                <span class="input-group-text bg-transparent border-0 text-muted">
-                                    <i class="bi bi-search"></i>
-                                </span>
-                                <input type="text" class="form-control bg-transparent border-0 shadow-none ps-0"
-                                    placeholder="Search Department..." style="font-size: 0.9rem;">
-                            </div>
-                        </div>
-
+                        <ComponentSearch v-model="search" @search="onsearch" />
                         <div class="col-6 col-md-3 col-lg-2">
-                            <button class="btn btn-blue w-100 rounded-pill fw-bold text-white shadow-sm">
+                            <button class="btn btn-blue w-100 rounded-pill fw-bold text-white shadow-sm"
+                                @click="ClickbtnDepartment">
                                 All <span class="d-none d-xl-inline">Departments</span> <span
-                                    class="badge bg-white text-primary rounded-circle ms-1">90</span>
+                                    class="badge bg-white text-primary rounded-circle ms-1">{{ departmentCount }}</span>
                             </button>
                         </div>
 
@@ -71,16 +64,14 @@
                                         <h6 class="dropdown-header small text-uppercase fw-bold text-muted">Sort Order
                                         </h6>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item small d-flex align-items-center" href="#">
-                                            <i class="bi bi-sort-alpha-down me-2 text-primary"></i> Name: Ascending
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item small d-flex align-items-center" href="#">
-                                            <i class="bi bi-sort-alpha-up me-2"></i> Name: Descending
-                                        </a>
-                                    </li>
+                                    <a class="dropdown-item small d-flex align-items-center" href="#"
+                                        @click.prevent="sortBy = 'name'; sortOrder = 'asc'; onsearch()">
+                                        <i class="bi bi-sort-alpha-down me-2 text-primary"></i> Name: Ascending
+                                    </a>
+                                    <a class="dropdown-item small d-flex align-items-center" href="#"
+                                        @click.prevent="sortBy = 'name'; sortOrder = 'desc'; onsearch()">
+                                        <i class="bi bi-sort-alpha-up me-2"></i> Name: Descending
+                                    </a>
                                 </ul>
                             </div>
                         </div>
@@ -96,8 +87,17 @@
                     </div>
                 </div>
                 <div
-                    class="card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-0 border-start border-primary">
-                    <div class="table-responsive">
+                    class="card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-start border-primary">
+
+                    <!-- Spinner -->
+                    <div v-if="loading" class="d-flex justify-content-center my-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div v-else class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
                             <thead class="bg-light">
                                 <tr>
@@ -110,68 +110,45 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr v-for="department in departments.items" :key="department.departmentID">
                                     <td class="ps-4">
-                                        <div class="fw-bold">MO-9923</div>
-                                        <span class="text-muted small">High-End Wireless Mouse</span>
+                                        <div class="fw-bold">{{ department.departmentID }}</div>
+                                        <span class="text-muted small">{{ department.description || '-' }}</span>
                                     </td>
                                     <td>
-                                        <span class="badge bg-light text-dark border">Electronics</span>
+                                        <span class="badge bg-light text-dark border">{{ department.departmentName
+                                            }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-medium">42 units</span>
+                                        <span class="fw-medium">{{ department.departmentCode || '-' }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-medium">Pieces</span>
+                                        <span class="fw-medium">{{ department.departmentHead || '-' }}</span>
                                     </td>
                                     <td>
-                                        <div class="fw-bold">SN-12345678</div>
+                                        <div class="fw-bold badge"
+                                            :class="department.isActive ? 'bg-success text-white' : 'bg-danger text-white'">
+                                            {{ department.isActive ? 'Active' : 'Inactive' }}
+                                        </div>
                                     </td>
-
                                     <td class="text-end pe-4">
                                         <button class="btn btn-light btn-sm border me-1"
-                                            @click="OpenDepartmentUpdateModal('edit', 'Edit Department')"><i
-                                                class="bi bi-pencil"></i></button>
+                                            @click="OpenDepartmentUpdateModal('edit', 'Edit Department', department)">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
                                         <button class="btn btn-light btn-sm border text-danger"
-                                            @click="OpenDepartmentDeleteModal('delete', 'Delete Department')"><i
-                                                class="bi bi-trash"></i></button>
+                                            @click="OpenDepartmentDeleteModal('delete', 'Delete Department', department)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mt-4 px-4 pb-4">
-                        <div class="text-secondary small fw-medium">
-                            Showing <span class="text-dark fw-bold">1</span> to <span
-                                class="text-dark fw-bold">10</span> of <span class="text-dark fw-bold">90</span> entries
-                        </div>
-
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination pagination-custom gap-1 mb-0">
-                                <li class="page-item disabled">
-                                    <a class="page-link border-0 shadow-sm rounded-3" href="#" tabindex="-1">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </a>
-                                </li>
-
-                                <li class="page-item active"><a class="page-link border-0 shadow-sm rounded-3"
-                                        href="#">1</a></li>
-                                <li class="page-item"><a class="page-link border-0 shadow-sm rounded-3" href="#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link border-0 shadow-sm rounded-3" href="#">3</a>
-                                </li>
-
-                                <li class="page-item px-1 text-muted align-self-center">...</li>
-
-                                <li class="page-item">
-                                    <a class="page-link border-0 shadow-sm rounded-3" href="#">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
+                    <ComponentPagination :total-items="departments.totalCount" :page-size="departments.pageSize"
+                        :current-page="departments.currentPage" :total-pages="departments.totalPages"
+                        @go="fetchDepartments" @next="fetchDepartments(departments.currentPage + 1)"
+                        @prev="fetchDepartments(departments.currentPage - 1)" />
                 </div>
                 <div v-if="showDepartmentAddModal" class="modal fade show d-block" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered">
@@ -244,12 +221,17 @@
 import ComponentAuthSidebar from '@/components/auth/sidebar.vue';
 import ComponentAuthNavigation from '@/components/auth/navigation.vue';
 import ComponentDepartmentManagementActions from '../../views/auth/actions/departmentManagementAction.vue';
+import ComponentPagination from '../../views/auth/components/pagination.vue';
+import ComponentSearch from '../../views/auth/components/search.vue'
+import axios from 'axios';
 export default {
     name: "DepartmentManagement",
     components: {
         ComponentAuthSidebar,
         ComponentAuthNavigation,
-        ComponentDepartmentManagementActions
+        ComponentDepartmentManagementActions,
+        ComponentPagination,
+        ComponentSearch
     },
     data() {
         return {
@@ -258,6 +240,19 @@ export default {
             showDepartmentDeleteModal: false,
             actionType: '',
             actionTypeTitle: '',
+            departments: {
+                items: [],
+                currentPage: 1,
+                pageSize: 10,
+                totalCount: 0,
+                totalPages: 1,
+            },
+            departmentCount: 0,
+            loading: false,
+            search: '',
+            sortBy: '',
+            sortOrder: '',
+
         }
     },
     methods: {
@@ -285,13 +280,72 @@ export default {
         hideDepartmentDeleteModal() {
             this.showDepartmentDeleteModal = false;
         },
+        async countDepartment() {
+            const response = await axios.get("http://localhost:5000/api/Department/list", {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
+
+            if (response.data && response.data.success) {
+                const res = response.data.data;
+                this.departmentCount = res.totalCount;
+            }
+
+        },
+        async fetchDepartments(page = 1) {
+            try {
+                this.loading = true;
+                const response = await axios.get("http://localhost:5000/api/Department/list", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                    params: {
+                        pageNumber: page,
+                        pageSize: this.departments.pageSize,
+                        search: this.search,
+                        sortBy: this.sortBy,
+                        sortOrder: this.sortOrder,
+                    },
+                });
+
+                if (response.data && response.data.success) {
+                    const res = response.data.data;
+                    this.departments.items = res.items;
+                    this.departments.currentPage = res.currentPage;
+                    this.departments.totalPages = res.totalPages;
+                    this.departments.totalCount = res.totalCount;
+                }
+            } catch (err) {
+                console.error("Error fetching departments:", err);
+            }
+            finally {
+                this.loading = false;
+
+            }
+        },
+        async ClickbtnDepartment() {
+            this.fetchDepartments();
+
+            this.search = '';
+        },
+        onsearch() {
+            this.departmentCount = this.departments.totalCount;
+            this.fetchDepartments(1);
+
+        }
+
+
     },
     mounted() {
         document.title = 'DEPARTMENT MANAGEMENT | MISO INVENTORY SYSTEM';
+        this.countDepartment();
+
+        this.fetchDepartments();
+
     }
 };
 </script>
-<style scoped src="../../src/assets/styles/components/pagination.css"></style>
 
 <style scoped src="../../src/assets/styles/components/card.css"></style>
 <style scoped src="../../src/assets/styles/components/button.css"></style>
