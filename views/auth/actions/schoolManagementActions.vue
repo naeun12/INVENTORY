@@ -112,4 +112,3 @@ export default {
     }
 }
 </script>
-<style scoped src="../../../src/assets/styles/actions/StockManagementActions.css"></style>

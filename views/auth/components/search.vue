@@ -5,8 +5,8 @@
                 <i class="bi bi-search"></i>
             </span>
 
-            <input type="text" class="form-control bg-transparent border-0 shadow-none ps-0"
-                placeholder="Search Department..." style="font-size: 0.9rem;" :value="modelValue" @input="updateSearch">
+            <input type="text" class="form-control bg-transparent border-0 shadow-none ps-0" :placeholder="placeholder"
+                style="font-size: 0.9rem;" :value="modelValue" @input="updateSearch">
         </div>
     </div>
 </template>
@@ -14,7 +14,11 @@
 <script>
 export default {
     props: {
-        modelValue: String
+        modelValue: String,
+        placeholder: {
+            type: String,
+            default: "Search....."
+        }
     },
     methods: {
         updateSearch(event) {

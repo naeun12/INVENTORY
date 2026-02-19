@@ -52,30 +52,43 @@
                     <hr class="my-2 border-gray-700">
 
                     <li>
-                        <router-link active-class="active" to="/department-management">
-                            <span class="icon"><i class="bi bi-building"></i></span>
-                            <span class="text">Departments</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link active-class="active" to="/nationaloffice-management">
-                            <span class="icon"><i class="bi bi-bank"></i></span>
-                            <span class="text">National Offices</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link active-class="active" to="/barangay-management">
-                            <span class="icon"><i class="bi bi-houses"></i></span>
-                            <span class="text">Barangay Units</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link active-class="active" to="/school-management">
-                            <span class="icon"><i class="bi bi-mortarboard"></i></span>
-                            <span class="text">Schools</span>
-                        </router-link>
-                    </li>
+                        <a class="d-flex align-items-center justify-content-between" data-bs-toggle="collapse"
+                            href="#managementMenu" role="button" aria-expanded="false" aria-controls="managementMenu">
 
+                            <span>
+                                <i class="bi bi-list me-2"></i> Managements
+                            </span>
+                            <i class="bi bi-chevron-down"></i>
+                        </a>
+
+                        <ul class="collapse list-unstyled ps-3" id="managementMenu">
+
+                            <li>
+                                <router-link class="nav-link" active-class="active" to="/department-management">
+                                    <i class="bi bi-building me-2"></i> Departments
+                                </router-link>
+                            </li>
+
+                            <li>
+                                <router-link class="nav-link" active-class="active" to="/nationaloffice-management">
+                                    <i class="bi bi-bank me-2"></i> National Offices
+                                </router-link>
+                            </li>
+
+                            <li>
+                                <router-link class="nav-link" active-class="active" to="/barangay-management">
+                                    <i class="bi bi-houses me-2"></i> Barangay Units
+                                </router-link>
+                            </li>
+
+                            <li>
+                                <router-link class="nav-link" active-class="active" to="/school-management">
+                                    <i class="bi bi-mortarboard me-2"></i> Schools
+                                </router-link>
+                            </li>
+
+                        </ul>
+                    </li>
                     <li>
                         <router-link to="/notifications" active-class="active">
                             <span class="icon"><i class="bi bi-bell"></i></span>

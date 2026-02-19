@@ -97,7 +97,7 @@ export default {
         async handleLogin() {
             try {
                 const response = await axios.post(
-                    "http://localhost:5000/api/user/auth",
+                    "https://localhost:7050/api/user/auth",
                     {
                         Username: this.username,
                         Password: this.password

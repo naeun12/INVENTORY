@@ -57,8 +57,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+                    <h5 class="mb-0 fw-bold text-dark">User Directory</h5>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4">
+                    <div class="view-switcher-container p-1 bg-light rounded-pill border">
+                        <div class="btn-group" role="group" aria-label="View Switcher">
+                            <input type="radio" class="btn-check" @click="changeDirectory(false)" name="view-options"
+                                id="cardView" autocomplete="off">
+                            <label class="btn btn-view-toggle rounded-pill px-3 py-1 d-flex align-items-center"
+                                for="cardView">
+                                <i class="bi bi-grid-fill"></i>
+                                <span class="ms-2 d-none d-sm-inline">Cards</span>
+                            </label>
+                            <input type="radio" class="btn-check" @click="changeDirectory(true)" name="view-options"
+                                id="tableView" autocomplete="off" checked>
+                            <label class="btn btn-view-toggle rounded-pill px-3 py-1 d-flex align-items-center"
+                                for="tableView">
+                                <i class="bi bi-table"></i>
+                                <span class="ms-2 d-none d-sm-inline">Table</span>
+                            </label>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4" v-if="!IschangeDisplay">
 
                     <div class="col">
                         <div class="card h-100 shadow-sm border-0 product-card">
@@ -109,6 +132,67 @@
                     </div>
 
                 </div>
+                <div class="w-100 card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-0 border-start border-primary"
+                    v-if="IschangeDisplay">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4 py-3 text-uppercase small fw-bold text-muted">ISSUANCE ID</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">ISSUNACE NO.</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">ITEM NAME</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">QUANTITY</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">UNIT</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">ISSUED TO</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">PURPOSE</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">LOCATION</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">ISSUED DATE</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">EXPECTED RETURN DATE</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted">STATUS</th>
+                                    <th class="py-3 text-uppercase small fw-bold text-muted text-end pe-4">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle border-bottom border-light">
+                                    <td class="ps-4 py-3 fw-bold text-dark">ISS-001</td>
+                                    <td class="py-3 text-muted">2024-1001</td>
+                                    <td class="py-3">
+                                        <span class="fw-semibold">Electric Drill - Makita</span>
+                                        <br><small class="text-muted">Power Tools</small>
+                                    </td>
+                                    <td class="py-3">1</td>
+                                    <td class="py-3">pc</td>
+                                    <td class="py-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-light rounded-circle me-2 d-flex align-items-center justify-content-center"
+                                                style="width: 30px; height: 30px;">
+                                                <i class="bi bi-person text-muted small"></i>
+                                            </div>
+                                            <span>John Doe</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 text-truncate" style="max-width: 150px;">Maintenance Hall A</td>
+                                    <td class="py-3">Site Office</td>
+                                    <td class="py-3 text-muted">01 Feb, 2024</td>
+                                    <td class="py-3 text-muted">04 Feb, 2024</td>
+                                    <td class="py-3">
+                                        <span
+                                            class="badge rounded-pill bg-danger-subtle text-danger px-3 py-2">Overdue</span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-blue rounded-3 py-2 fw-bold shadow-sm transition-base"
+                                            @click="OpenOderModal('Order', 'Delivery Process')">
+                                            <i class="bi bi-truck me-2"></i>
+                                        </button>
+
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div v-if="showOderModal" class="modal fade show d-block" tabindex="-1">
                     <div class="modal-dialog modal-xl modal-dialog-centered">
                         <div class="modal-content border-0 shadow">
@@ -150,6 +234,7 @@ export default {
             actionType: '',
             actionTypeTitle: '',
             quantity: 1,
+            IschangeDisplay: false,
             showOderModal: false,
         };
     },
@@ -170,6 +255,10 @@ export default {
         HideOderModal() {
             this.showOderModal = false;
 
+        },
+        changeDirectory(isChange) {
+            this.IschangeDisplay = isChange;
+            alert(this.IschangeDisplay);
         }
 
     },

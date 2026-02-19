@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../../views/accountManagement/Login.vue'
 import Dashboard from '../../views/auth/dashboard.vue'
-import StockManagement from '../../views/auth/stockmanagement.vue'
+import StockManagement from '../../views/auth/InventoryManagement.vue'
 import Issuances from '../../views/auth/issuances.vue'
 import Delivery from '../../views/auth/delivery.vue'
 import DepartmentManagement from '../../views/auth/departmentManagement.vue'

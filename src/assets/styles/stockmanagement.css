@@ -1,35 +1,6 @@
 body {
   margin: 0;
 }
-.btn-custom-admin1 {
-  background-color: #f4c430;
-  color: black;
-  width: 150px;
-  border-radius: 10px;
-}
-
-.btn-custom-admin1:hover {
-  background-color: #d6c592;
-  color: white;
-}
-.btn-custom-admin2 {
-  background-color: #d32f2f;
-  color: white;
-  width: 150px;
-  border-radius: 10px;
-}
-
-.btn-custom-admin2:hover {
-  background-color: #d66060;
-  color: white;
-}
-.text-blue {
-  color: #1a3270 !important;
-}
-.border-blue-subtle {
-  border-color: #1a3270 !important;
-}
-
 .btn-blue:hover {
   background-color: #1a3270;
   transform: translateY(-1px);
@@ -42,4 +13,94 @@ body {
 .btn-blue:hover {
   background-color: #1a3270;
   transform: translateY(-1px);
+}
+.loader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0);
+  /* dim */
+  backdrop-filter: blur(3px);
+  /* blur effect */
+
+  z-index: 999;
+  border-radius: 0.5rem;
+}
+/* Container Design */
+.modal-content {
+  border-radius: 12px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.modal-header {
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-title {
+  color: #2d3436;
+  letter-spacing: -0.5px;
+  font-size: 1.25rem;
+}
+
+/* Form Controls Customization */
+.form-label {
+  color: #636e72;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.form-control {
+  border: 1.5px solid #edf2f7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #4361ee;
+  box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+  outline: none;
+}
+
+/* Placeholder color */
+.form-control::placeholder {
+  color: #b2bec3;
+  font-weight: 400;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #4361ee;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition:
+    transform 0.1s active,
+    background 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #3751d3;
+  box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Close Button focus fix */
+.btn-close:focus {
+  box-shadow: none;
 }

@@ -9,7 +9,8 @@
                 <div class="card border-0 shadow-sm mx-4 my-3 p-3 rounded-4">
                     <div class="row g-3 align-items-center">
 
-                        <ComponentSearch v-model="search" @search="onsearch" />
+                        <ComponentSearch placeholder="Search departments or department heads..." v-model="search"
+                            @search="onsearch" />
                         <div class="col-6 col-md-3 col-lg-2">
                             <button class="btn btn-blue w-100 rounded-pill fw-bold text-white shadow-sm"
                                 @click="ClickbtnDepartment">
@@ -87,14 +88,16 @@
                     </div>
                 </div>
                 <div
-                    class="card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-start border-primary">
+                    class="card border-0 shadow-sm overflow-hidden container-fluid w-75 py-3 mt-3 px-4 border-start border-primary w-100">
 
                     <!-- Spinner -->
-                    <div v-if="loading" class="d-flex justify-content-center my-5">
+
+                    <!-- <div v-if="loading" class="d-flex justify-content-center my-5">
                         <div class="spinner-border text-primary" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
-                    </div>
+                    </div> -->
+                    <ComponentLoading v-if="loading" />
 
                     <!-- Table -->
                     <div v-else class="table-responsive">
@@ -222,7 +225,8 @@ import ComponentAuthSidebar from '@/components/auth/sidebar.vue';
 import ComponentAuthNavigation from '@/components/auth/navigation.vue';
 import ComponentDepartmentManagementActions from '../../views/auth/actions/departmentManagementAction.vue';
 import ComponentPagination from '../../views/auth/components/pagination.vue';
-import ComponentSearch from '../../views/auth/components/search.vue'
+import ComponentSearch from '../../views/auth/components/search.vue';
+import ComponentLoading from '../../views/auth/components/loading.vue'
 import axios from 'axios';
 export default {
     name: "DepartmentManagement",
@@ -231,7 +235,8 @@ export default {
         ComponentAuthNavigation,
         ComponentDepartmentManagementActions,
         ComponentPagination,
-        ComponentSearch
+        ComponentSearch,
+        ComponentLoading,
     },
     data() {
         return {
@@ -281,7 +286,7 @@ export default {
             this.showDepartmentDeleteModal = false;
         },
         async countDepartment() {
-            const response = await axios.get("http://localhost:5000/api/Department/list", {
+            const response = await axios.get("https://localhost:7050/api/Department/list", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -296,7 +301,7 @@ export default {
         async fetchDepartments(page = 1) {
             try {
                 this.loading = true;
-                const response = await axios.get("http://localhost:5000/api/Department/list", {
+                const response = await axios.get("https://localhost:7050/api/Department/list", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -349,3 +354,4 @@ export default {
 
 <style scoped src="../../src/assets/styles/components/card.css"></style>
 <style scoped src="../../src/assets/styles/components/button.css"></style>
+<style scoped src="../../src/assets/styles/actions/action.css"></style>
