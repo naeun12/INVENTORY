@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../../views/accountManagement/Login.vue'
 import Dashboard from '../../views/auth/dashboard.vue'
-import StockManagement from '../../views/auth/InventoryManagement.vue'
 import Issuances from '../../views/auth/issuances.vue'
-import Delivery from '../../views/auth/delivery.vue'
+import Logistic from '../../views/auth/logistic.vue'
 import DepartmentManagement from '../../views/auth/departmentManagement.vue'
 import NationalofficeManagement from '../../views/auth/nationalofficeManagement.vue'
 import BarangayManagement from '../../views/auth/barangayManagement.vue'
@@ -11,8 +10,9 @@ import SchoolManagement from '../../views/auth/schoolManagement.vue'
 import AccountSettings from '../../views/auth/accountSettings.vue'
 import MyProfile from '../../views/auth/myProfile.vue'
 import Notifications from '../../views/auth/notifications.vue'
-
 import CreatenewAccount from '../../views/auth/createnewAccount.vue'
+import ItemsManagement from '../../views/auth/itemsManagement.vue'
+import Location from '../../views/auth/locations.vue'
 const routes = [
   {
     path: '/',
@@ -25,9 +25,9 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: '/stock-management',
-    name: 'StockManagement',
-    component: StockManagement,
+    path: '/items-management',
+    name: 'ItemsManagement',
+    component: ItemsManagement,
   },
   {
     path: '/issuances',
@@ -35,9 +35,9 @@ const routes = [
     component: Issuances,
   },
   {
-    path: '/delivery',
-    name: 'Delivery',
-    component: Delivery,
+    path: '/logistic',
+    name: 'logistic',
+    component: Logistic,
   },
   {
     path: '/notifications',
@@ -78,6 +78,11 @@ const routes = [
     path: '/my-profile',
     name: 'MyProfile',
     component: MyProfile,
+  },
+  {
+    path: '/location',
+    name: 'Location',
+    component: Location,
   },
 ]
 

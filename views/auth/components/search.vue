@@ -1,6 +1,6 @@
 <template>
-    <div class="col-12 col-lg-3">
-        <div class="input-group bg-light rounded-pill px-3">
+    <div class="col-12 col-lg-3 w-50">
+        <div class="input-group bg-light rounded-pill px-3 w-100">
             <span class="input-group-text bg-transparent border-0 text-muted">
                 <i class="bi bi-search"></i>
             </span>

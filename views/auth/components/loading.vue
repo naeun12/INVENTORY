@@ -12,3 +12,4 @@ export default {
 }
 
 </script>
+<style scoped src="../../../src/assets/styles/components/loading.css"></style>

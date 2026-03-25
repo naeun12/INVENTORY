@@ -14,7 +14,7 @@
         </div>
     </nav>
 
-
+<ComponentLoader v-if="loading" class="loader-overlay" />
     <!-- Login Card -->
     <div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
         <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
@@ -78,11 +78,13 @@
 <script>
 import axios from "axios";
 import ErrorToast from "@/components/toast/ToastError.vue";
+import ComponentLoader from '../../views/auth/components/loading.vue'
 
 export default {
     name: "LoginPage",
     components: {
-        ErrorToast
+        ErrorToast,
+        ComponentLoader
     },
     data() {
         return {
@@ -91,10 +93,12 @@ export default {
             error: "",
             message: "",
             showPassword: false,
+            loading: false,
         };
     },
     methods: {
         async handleLogin() {
+            this.loading = true;
             try {
                 const response = await axios.post(
                     "https://localhost:7050/api/user/auth",
@@ -104,7 +108,6 @@ export default {
                     }
                 );
                 localStorage.setItem("token", response.data.data.token);
-                alert('token: ' + response.data.token);
                 this.$router.push("/dashboard");
 
             } catch (error) {
@@ -116,9 +119,12 @@ export default {
                 } else {
                     this.error = "Server not reachable.";
                 }
-
-                this.$refs.errorToast.show();
             }
+            finally {
+                this.loading = false;
+            }
+
+
 
         }
     },
@@ -129,3 +135,7 @@ export default {
 </script>
 
 <style scoped src="../../src/assets/styles/login.css"></style>
+<style scoped src="../../src/assets/styles/components/loading.css"></style>
+<style>
+
+</style>
