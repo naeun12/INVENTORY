@@ -99,7 +99,7 @@
 
                                             <td>
                                                 <span class="font-monospace small fw-bold">{{ item.serialNumber || 'N/A'
-                                                    }}</span>
+                                                }}</span>
                                             </td>
 
                                             <td class="text-center">

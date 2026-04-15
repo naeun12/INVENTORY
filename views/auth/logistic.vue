@@ -7,6 +7,8 @@
 
             <main class="container-fluid p-4">
                 <ComponentLoader v-if="loading" class="loader-overlay" />
+                <ComponentSuccessModal :showSuccess="showSuccess" :title="title" :message="message" buttonText="OK"
+                    @close="showSuccess = false" />
                 <div class="card border-0 shadow-sm mx-4 my-3 p-3 rounded-4">
                     <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
 
@@ -115,27 +117,38 @@
                                     <div class="product-overlay"></div>
                                 </div>
 
-                                <div class="card-body d-flex flex-column">
-                                    <div class="mb-2">
-                                        <h6 class="text-uppercase text-primary fw-bold mb-1"
-                                            style="font-size: 0.75rem; letter-spacing: 1px;"> {{ item.serialNumber ||
-                                                'N/A'
-                                            }}</h6>
-                                        <h5 class="card-title mb-0 fw-bold text-dark"> {{ item.type }}</h5>
+                                <div class="card-body d-flex flex-column p-4">
+                                    <div class="mb-3">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <span class="text-uppercase text-muted fw-bold small tracking-wider"
+                                                style="letter-spacing: 0.05rem; font-size: 0.7rem;">
+                                                #{{ item.serialNumber || 'N/A' }}
+                                            </span>
+                                            <span :class="[
+                                                'badge rounded-pill border px-2 py-1',
+                                                item.availableStocks > 10 ? 'bg-success-subtle text-success border-success-subtle' : 'bg-warning-subtle text-warning-emphasis border-warning-subtle'
+                                            ]">
+                                                {{ item.availableStocks }} in stock
+                                            </span>
+                                        </div>
+                                        <h5 class="card-title mt-1 mb-0 fw-bold text-dark h6">
+                                            {{ item.type }}
+                                        </h5>
                                     </div>
 
-                                    <p class="card-text text-muted small mb-4">
-                                        {{ item.description || 'No description available' }}
+                                    <p class="card-text text-secondary small mb-4 flex-grow-1"
+                                        style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">
+                                        {{ item.description || 'No description available for this item.' }}
                                     </p>
 
                                     <div class="mt-auto">
-
-
                                         <div class="d-grid">
                                             <button
-                                                class="btn btn-blue rounded-3 py-2 fw-bold shadow-sm transition-base"
-                                                @click="getItemDetails(item.itemID)">
-                                                <i class="bi bi-truck me-2"></i>Order Processing
+                                                class="btn btn-primary rounded-3 py-2 fw-semibold shadow-sm border-0 d-flex align-items-center justify-content-center"
+                                                @click="getItemDetails(item.itemID)"
+                                                style="transition: all 0.2s ease; background: linear-gradient(45deg, #0d6efd, #0a58ca);">
+                                                <i class="bi bi-box-seam me-2"></i>
+                                                Order Processing
                                             </button>
                                         </div>
                                     </div>
@@ -205,7 +218,7 @@
 
                                         <td>
                                             <span class="font-monospace small fw-bold">{{ item.serialNumber || 'N/A'
-                                                }}</span>
+                                            }}</span>
                                         </td>
 
                                         <td class="text-center">
@@ -277,7 +290,7 @@
                             </div>
 
                             <div class="modal-body p-4 pt-0">
-                                <form class="needs-validation">
+                                <div class="needs-validation">
                                     <div
                                         class="d-flex align-items-center justify-content-between mb-4 p-3 rounded-4 bg-primary-subtle border border-primary border-opacity-25">
                                         <div>
@@ -317,13 +330,15 @@
                                             <div class="col-md-2">
                                                 <label
                                                     class="form-label text-muted extra-small fw-bold text-uppercase">Qty</label>
-                                                <input type="number" class="form-control text-center shadow-none"
-                                                    value="1">
+                                                <input type="number" v-model="dispatchData.quantity"
+                                                    @input="validateQuantity"
+                                                    class="form-control text-center shadow-none"
+                                                    :max="currentItem.availableStocks" min="1">
                                             </div>
                                             <div class="col-md-3">
                                                 <label
                                                     class="form-label text-muted extra-small fw-bold text-uppercase">Unit</label>
-                                                <select class="form-select shadow-none">
+                                                <select class="form-select shadow-none" v-model="dispatchData.oum">
                                                     <option>Pieces (pcs)</option>
                                                     <option>Sets</option>
                                                     <option>Kilograms (kg)</option>
@@ -333,50 +348,76 @@
                                     </div>
 
                                     <div class="row g-3 mb-4">
-                                        <div class="col-md-6">
-                                            <div class="form-floating">
-                                                <input type="text"
-                                                    class="form-control shadow-none border-0 border-bottom rounded-0 px-0"
-                                                    id="issuedTo" placeholder="Name">
-                                                <label for="issuedTo" class="ps-0 text-muted small fw-bold"><i
-                                                        class="bi bi-person me-1"></i>
-                                                    ISSUED TO</label>
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control shadow-none border-0 border-bottom rounded-0 px-0"
+                                                        id="issuedTo" placeholder="Name"
+                                                        v-model="dispatchData.issuedTo">
+                                                    <label for="issuedTo" class="ps-0 text-muted small fw-bold">
+                                                        <i class="bi bi-person me-1"></i> ISSUED TO
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label
+                                                    class="form-label text-muted extra-small fw-bold text-uppercase">Issued
+                                                    Date</label>
+                                                <input type="date"
+                                                    class="form-control form-control-sm border-0 shadow-none bg-transparent"
+                                                    v-model="dispatchData.issuedToDate" :min="todayDate()">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                        class="form-control shadow-none border-0 border-bottom rounded-0 px-0"
+                                                        id="issuedFrom" placeholder="Name"
+                                                        v-model="dispatchData.issuedFrom">
+                                                    <label for="issuedFrom" class="ps-0 text-muted small fw-bold">
+                                                        <i class="bi bi-person me-1"></i> ISSUED FROM
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label
+                                                    class="form-label text-muted extra-small fw-bold text-uppercase text-info">Issued
+                                                    Date
+                                                </label>
+                                                <input type="date"
+                                                    class="form-control form-control-sm border-0 shadow-none bg-transparent"
+                                                    v-model="dispatchData.issuedFromDate" :min="todayDate()">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text"
+                                                class="form-control border-0 border-bottom rounded-0 px-0" id="issuedBy"
+                                                placeholder="Name" value="Admin" v-model="dispatchData.requestedBy" />
+                                            <label for="issuedBy" class="ps-0 text-muted small fw-bold">
+                                                <i class="bi bi-person me-1"></i> REQUESTED BY
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6 w-100">
                                             <div class="form-floating">
                                                 <select
                                                     class="form-select shadow-none border-0 border-bottom rounded-0 px-0"
-                                                    id="location">
-                                                    <option selected disabled>Select Site</option>
+                                                    id="location" v-model="dispatchData.locationID">
+
+                                                    <option disabled value="">Select Site</option>
+
                                                     <option v-for="loc in locations" :key="loc.locationID"
                                                         :value="loc.locationID">
                                                         {{ loc.location }}
                                                     </option>
                                                 </select>
-                                                <label for="location" class="ps-0 text-muted small fw-bold"><i
-                                                        class="bi bi-geo-alt me-1"></i>
-                                                    LOCATION</label>
+
+                                                <label for="location" class="ps-0 text-muted small fw-bold">
+                                                    <i class="bi bi-geo-alt me-1"></i>
+                                                    LOCATION
+                                                </label>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="row g-3 mb-4 p-3 rounded-4 border bg-light-subtle">
-                                        <div class="col-md-4">
-                                            <label
-                                                class="form-label text-muted extra-small fw-bold text-uppercase">Issued
-                                                Date</label>
-                                            <input type="date"
-                                                class="form-control form-control-sm border-0 shadow-none bg-transparent">
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label
-                                                class="form-label text-muted extra-small fw-bold text-uppercase text-info">Return
-                                                Date</label>
-                                            <input type="date"
-                                                class="form-control form-control-sm border-0 shadow-none bg-transparent">
-                                        </div>
-
                                     </div>
 
                                     <div class="mb-2">
@@ -385,19 +426,22 @@
                                             REMARKS</label>
                                         <textarea class="form-control shadow-none border-light-subtle" rows="3"
                                             placeholder="Describe the reason for issuance..."
-                                            style="resize: none; border-radius: 12px;"></textarea>
+                                            style="resize: none; border-radius: 12px;"
+                                            v-model="dispatchData.purpose"></textarea>
                                     </div>
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary rounded-3 py-2 fw-bold shadow-sm w-25">
+                                        <button class="btn btn-primary rounded-3 py-2 fw-bold shadow-sm w-25"
+                                            @click="dispatchItems(currentItem.itemID)">
                                             <i class="bi bi-truck me-2"></i>Dispatch
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div v-if="showOrderModal" class="modal-backdrop fade show"></div>
+                <ComponentToastError :message="errorMessage" ref="errorToast" />
             </main>
         </div>
     </div>
@@ -412,6 +456,7 @@ import ComponentPagination from '../../views/auth/components/pagination.vue';
 import ComponentSearch from '../../views/auth/components/search.vue';
 import ComponentFilter from '../../views/auth/components/filter.vue';
 import ComponentSorting from '../../views/auth/components/sorting.vue';
+import ComponentToastError from '../../src/components/toast/ToastError.vue'
 export default {
     name: 'Logistic',
     components: {
@@ -423,19 +468,21 @@ export default {
         ComponentSearch,
         ComponentFilter,
         ComponentSorting,
+        ComponentToastError
 
     },
     data() {
         return {
             actionType: '',
             actionTypeTitle: '',
-            quantity: 1,
             itemID: null,
             IschangeDisplay: false,
             showOrderModal: false,
             search: '',
             sortOrder: 'asc',
             filterStatus: '',
+            showSuccess: false,
+            message: '',
             statusOptions: [
                 { value: 'inStock', label: 'In Stock', class: '', circleClass: 'bg-success' },
                 { value: 'outOfStock', label: 'Out of Stock', class: 'text-danger', circleClass: 'bg-danger' },
@@ -484,7 +531,21 @@ export default {
                 availableStocks: 0,
                 stockStatus: '',
                 remarks: '',
-            }
+            },
+            dispatchData: {
+                locationID: null,
+                issuedTo: '',
+                issuedFrom: '',
+                issuedToDate: '',
+                issuedFromDate: '',
+                purpose: '',
+                oum: '',
+                requestedBy: '',
+                quantity: 1,
+            },
+            errors: {},
+            errorMessage: ''
+
         };
     },
     methods: {
@@ -590,8 +651,61 @@ export default {
             }
 
         },
+        async dispatchItems(itemID) {
 
+            try {
+                this.loading = true;
 
+                const payload = {
+                    FKItemID: itemID,
+                    FKLocationID: this.dispatchData.locationID,
+                    IssuedTo: this.dispatchData.issuedTo,
+                    IssuedFrom: this.dispatchData.issuedFrom,
+                    IssuedToDate: this.dispatchData.issuedToDate, // ISO string
+                    IssuedFromDate: this.dispatchData.issuedFromDate, // ISO string
+                    Purpose: this.dispatchData.purpose,
+                    UOM: this.dispatchData.oum,
+                    Quantity: this.dispatchData.quantity,
+                    RequestedBy: this.dispatchData.requestedBy
+                };
+                const response = await axios.post(
+                    'https://localhost:7050/api/Logistic/AddIssuances',
+                    payload,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (response.data.success) {
+                    this.message = response.data.message;
+                    this.title = 'Dispatch Successful';
+                    this.showSuccess = true;
+                    this.showOrderModal = false;
+
+                    this.loading = false;
+
+                    this.fetchItems(this.items.currentPage);
+                } else {
+                    this.errorMessage = response.data.message || 'Failed to dispatch items.';
+                    this.$refs.errorToast.show(); // 🔥 show toast
+
+                }
+            } catch (error) {
+                console.error(error.response?.data || error.message);
+                this.errors.dispatch = error.response?.data?.message || 'An error occurred while dispatching items.';
+            }
+            finally {
+                this.loading = false;
+
+            }
+        },
+        todayDate() {
+            const today = new Date();
+            return today.toISOString().split('T')[0];
+        },
     },
     mounted() {
         document.title = 'Logistic - Inventory Management System';
@@ -600,10 +714,10 @@ export default {
     },
     watch: {
         filterStatus(newFilter) {
-            this.fetchItems(1); // reset to first page on filter change
+            this.fetchItems(1);
         },
         sortBy(newVal) {
-            this.fetchItems(1); // reset to page 1
+            this.fetchItems(1);
         }
     }
 };
